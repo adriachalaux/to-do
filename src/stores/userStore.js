@@ -24,7 +24,13 @@ export const useUserStore = defineStore({
     },
     async signUp(email, password) {
       try {
-        this.user = await createNewUser(email, password)
+        const result = await createNewUser(email, password)
+        if (result.user) {
+          this.user = result.user
+        } else {
+          // Iniciar sesión automáticamente al usuario después del registro
+          await this.signIn(email, password)
+        }
       } catch (error) {
         console.error(error)
       }
