@@ -29,10 +29,17 @@ const _signIn = async (e) => {
     <form @submit.prevent="_signIn">
       <div class="container">
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" v-model="email" required />
+        <input
+          type="text"
+          placeholder="Enter Email"
+          v-model="email"
+          id="email"
+          autocomplete="on"
+          required
+        />
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" v-model="password" required />
+        <input type="password" placeholder="Enter Password" v-model="password" id="psw" required />
         <hr />
 
         <button type="submit" class="registerbtn">Login</button>
