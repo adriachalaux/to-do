@@ -2,9 +2,14 @@
 
 #app {
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
+  background-color: #dddddd;
+}
+
+main {
+  padding: 2rem;
 }
 
 a,
@@ -24,13 +29,5 @@ a,
 @media (min-width: 1024px) {
   body {
     display: flex;
-  }
-
-  #app {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 2rem;
   }
 }

@@ -26,4 +26,14 @@ function _signOut() {
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  background-color: #eeeeee;
+  width: 100%;
+  padding: 1rem;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
