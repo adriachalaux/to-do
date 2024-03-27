@@ -5,7 +5,8 @@ import { useTasksStore } from '@/stores/tasksStore'
 import { storeToRefs } from 'pinia'
 // Components
 import NewTaskComponent from '@/components/NewTaskComponent.vue'
-import TaskItemComponent from '@/components/TaskItemComponent.vue' // Asegúrate de que la ruta de importación sea correcta
+import TaskItemComponent from '@/components/TaskItemComponent.vue'
+import TaskItemCompletedComponent from '@/components/TaskItemCompletedComponent.vue'
 
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
@@ -24,10 +25,23 @@ onMounted(() => {
     <h4>
       {{ tasksStore.completedTasksCount }} completas y {{ tasksStore.pendingTasksCount }} pendientes
     </h4>
-    <ol>
-      <TaskItemComponent v-for="task in tasksStore.tasksSortedById" :key="task.id" :task="task" />
-    </ol>
-    <NewTaskComponent />
+    <div class="tasks__list tasks__list--pending">
+      <h3>Pending Tasks</h3>
+      <ol>
+        <TaskItemComponent v-for="task in tasksStore.pendingTasks" :key="task.id" :task="task" />
+      </ol>
+      <NewTaskComponent />
+    </div>
+    <div class="tasks__list tasks__list--completed">
+      <h3>Completed Tasks</h3>
+      <ol>
+        <TaskItemCompletedComponent
+          v-for="task in tasksStore.completedTasks"
+          :key="task.id"
+          :task="task"
+        />
+      </ol>
+    </div>
   </main>
 </template>
 
@@ -39,5 +53,13 @@ ol {
   margin-bottom: 2rem;
   margin-left: 0;
   padding-inline-start: 1.5rem;
+}
+.tasks__list--pending {
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+.tasks__list h3 {
+  margin-bottom: 1rem;
 }
 </style>

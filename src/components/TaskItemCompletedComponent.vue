@@ -10,8 +10,8 @@ const tasksStore = useTasksStore()
 const _removeTask = async () => {
   await tasksStore.deleteExistingTask(props.task.id)
 }
-const _completeTask = async () => {
-  await tasksStore.markTaskComplete(props.task.id)
+const _incompleteTask = async () => {
+  await tasksStore.markTaskInComplete(props.task.id)
 }
 </script>
 
@@ -23,7 +23,7 @@ const _completeTask = async () => {
       </p>
       <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p>
       <p>{{ props.task.id }}</p>
-      <button @click="_completeTask">Complete</button>
+      <button @click="_incompleteTask">Incomplete</button>
       <button @click="_removeTask">Delete</button>
     </div>
   </li>
@@ -34,6 +34,7 @@ const _completeTask = async () => {
   display: flex;
   gap: 1rem;
   margin-bottom: 0.5rem;
+  color: #737373;
 }
 .task-title {
   flex: 0 1 25rem;
