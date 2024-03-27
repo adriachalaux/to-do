@@ -84,6 +84,16 @@ export const useTasksStore = defineStore({
       } catch (error) {
         console.error('Error al borrar tarea:', error.message)
       }
+    },
+    async changeTaskTitle(taskId, newTitle) {
+      try {
+        await updateTask(taskId, { title: newTitle })
+        // Actualizar el estado local de la tarea a completada
+        const task = this.tasks.find((task) => task.id === taskId)
+        if (task) task.title = newTitle
+      } catch (error) {
+        console.error('Error al actualizar tarea:', error.message)
+      }
     }
   }
 })
