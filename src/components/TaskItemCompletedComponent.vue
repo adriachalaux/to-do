@@ -36,18 +36,15 @@ const _incompleteTask = async () => {
 <style scoped>
 .task-content {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   margin-bottom: 0.5rem;
   color: #737373;
 }
 .task-title {
-  flex: 0 1 25rem;
+  flex: 1 1 25rem;
   text-decoration: line-through;
 }
 .task-title span {
   font-weight: bold;
-}
-.task-status {
-  flex: 0 1 35rem;
 }
 </style>

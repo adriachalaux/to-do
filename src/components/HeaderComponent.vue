@@ -20,7 +20,10 @@ function _signOut() {
       <nav>
         <RouterLink to="/">Dashboard</RouterLink>
         <RouterLink v-if="!user" to="/auth">Auth</RouterLink>
-        <button v-if="user" @click="_signOut">Logout</button>
+        <div v-if="user" class="navigation--user">
+          <h4>Hola {{ user.email }}</h4>
+          <button @click="_signOut">Logout</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -35,5 +38,10 @@ header {
 nav {
   display: flex;
   justify-content: space-between;
+}
+.navigation--user {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 </style>

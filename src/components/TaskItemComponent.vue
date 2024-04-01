@@ -95,11 +95,11 @@ const handleClickOutside = (event) => {
 <style scoped>
 .task-content {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   margin-bottom: 0.5rem;
 }
 .task-title {
-  flex: 0 1 25rem;
+  flex: 1 1 25rem;
   position: relative;
 }
 .task-title p {
@@ -118,29 +118,14 @@ const handleClickOutside = (event) => {
   font-weight: 600;
   padding-left: 13px;
 }
-.task-status {
-  flex: 0 1 35rem;
-}
 .text-area {
   position: absolute;
   top: -6px;
   right: 0;
   bottom: 0;
   left: 0;
-  background: transparent;
-  border-radius: 8px;
-  box-shadow: none;
-  box-sizing: border-box;
-  font-weight: 600;
-  margin: 0;
-  min-height: 20px;
   opacity: 0;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  padding: 6px 8px 6px 12px;
-  resize: none;
   z-index: -1;
-  font-size: 16px;
 }
 
 .task-title.edit p {
