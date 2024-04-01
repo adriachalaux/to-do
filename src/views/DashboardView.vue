@@ -7,6 +7,8 @@ import { storeToRefs } from 'pinia'
 import NewTaskComponent from '@/components/NewTaskComponent.vue'
 import TaskItemComponent from '@/components/TaskItemComponent.vue'
 import TaskItemCompletedComponent from '@/components/TaskItemCompletedComponent.vue'
+import NoCompletedItemsComponent from '@/components/NoCompletedItemsComponent.vue'
+import NoTaskItemsComponent from '@/components/NoTaskItemsComponent.vue'
 
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
@@ -25,14 +27,15 @@ onMounted(() => {
     <h4>
       {{ tasksStore.completedTasksCount }} completas y {{ tasksStore.pendingTasksCount }} pendientes
     </h4>
-    <div class="tasks__list tasks__list--pending">
+    <NewTaskComponent />
+    <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
       <h3>Pending Tasks</h3>
       <ol>
         <TaskItemComponent v-for="task in tasksStore.pendingTasks" :key="task.id" :task="task" />
       </ol>
-      <NewTaskComponent />
     </div>
-    <div class="tasks__list tasks__list--completed">
+    <NoTaskItemsComponent v-else />
+    <div class="tasks__list tasks__list--completed" v-if="tasksStore.completedTasks.length">
       <h3>Completed Tasks</h3>
       <ol>
         <TaskItemCompletedComponent
@@ -42,6 +45,7 @@ onMounted(() => {
         />
       </ol>
     </div>
+    <NoCompletedItemsComponent v-else />
   </main>
 </template>
 

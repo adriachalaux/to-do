@@ -18,6 +18,10 @@ const _incompleteTask = async () => {
 <template>
   <li>
     <div class="task-content">
+      <div class="checkbox-container" @click="_incompleteTask()">
+        <input type="checkbox" :checked="task.is_complete" />
+        <span class="checkmark"></span>
+      </div>
       <p class="task-title">
         <span>{{ props.task.title }}</span>
       </p>
@@ -32,12 +36,13 @@ const _incompleteTask = async () => {
 <style scoped>
 .task-content {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
   color: #737373;
 }
 .task-title {
   flex: 0 1 25rem;
+  text-decoration: line-through;
 }
 .task-title span {
   font-weight: bold;

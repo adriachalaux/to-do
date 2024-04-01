@@ -68,6 +68,10 @@ const handleClickOutside = (event) => {
 <template>
   <li>
     <div class="task-content">
+      <div class="checkbox-container" @click="_completeTask()">
+        <input type="checkbox" :checked="task.is_complete" />
+        <span class="checkmark"></span>
+      </div>
       <div class="task-title" @click="_accessEditMode" :class="{ edit: isEditing }">
         <p role="textbox">{{ props.task.title }}</p>
         <textarea
@@ -91,7 +95,7 @@ const handleClickOutside = (event) => {
 <style scoped>
 .task-content {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 .task-title {
