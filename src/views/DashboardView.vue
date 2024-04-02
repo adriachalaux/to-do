@@ -22,17 +22,17 @@ onMounted(() => {
 <template>
   <div class="dashboard">
     <aside>
-      <h2>Dashboard</h2>
-      <h3>Tienes {{ tasksStore.totalTasksCount }} tareas</h3>
-      <h4>{{ tasksStore.pendingTasksCount }} pendientes</h4>
-      <h4>{{ tasksStore.completedTasksCount }} completas</h4>
+      <h2 class="p-m">Dashboard</h2>
+      <h3 class="h-xl">{{ tasksStore.totalTasksCount }} tareas</h3>
+      <h4 class="p-m">{{ tasksStore.pendingTasksCount }} pendientes</h4>
+      <h4 class="p-m">{{ tasksStore.completedTasksCount }} completas</h4>
     </aside>
     <main>
       <div class="dashboard__tasks">
-        <h2>Tasks</h2>
+        <h2 class="p-m">Tasks</h2>
         <NewTaskComponent class="dashboard__new-task" />
         <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
-          <h3>Pending Tasks</h3>
+          <h3 class="h-xxl">Pending</h3>
           <ul>
             <TaskItemComponent
               v-for="task in tasksStore.pendingTasks"
@@ -43,7 +43,7 @@ onMounted(() => {
         </div>
         <NoTaskItemsComponent v-else />
         <div class="tasks__list tasks__list--completed" v-if="tasksStore.completedTasks.length">
-          <h3>Completed Tasks</h3>
+          <h3 class="h-xxl">Completed</h3>
           <ul>
             <TaskItemCompletedComponent
               v-for="task in tasksStore.completedTasks"
@@ -59,6 +59,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.dashboard {
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+}
 @media (min-width: 1024px) {
   .dashboard {
     display: flex;
@@ -68,13 +72,15 @@ onMounted(() => {
 aside {
   flex: 0 1 18rem;
   padding: 1rem;
+  /* position: sticky;
+  top: 5rem; */
 }
 main {
   flex: 1;
   padding: 1rem;
 }
 .dashboard__tasks {
-  max-width: 75rem;
+  max-width: 60rem;
   margin: 0 auto;
 }
 .dashboard__new-task {

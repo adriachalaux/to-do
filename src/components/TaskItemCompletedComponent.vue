@@ -25,7 +25,7 @@ const _incompleteTask = async () => {
       <p class="task-title">
         <span>{{ props.task.title }}</span>
       </p>
-      <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p>
+      <!-- <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p> -->
       <p>{{ props.task.id }}</p>
       <button @click="_removeTask">Delete</button>
     </div>
@@ -43,8 +43,5 @@ const _incompleteTask = async () => {
 .task-title {
   flex: 1 1 25rem;
   text-decoration: line-through;
-}
-.task-title span {
-  font-weight: bold;
 }
 </style>

@@ -9,26 +9,12 @@
 }
 
 main {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 a {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.25rem;
 }
 
 ul {
@@ -38,8 +24,9 @@ ul {
 
 button {
   padding: 0.2rem 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0;
   border: none;
+  text-transform: uppercase;
 }
 
 @media (hover: hover) {
@@ -52,6 +39,46 @@ button {
   body {
     display: flex;
   }
+}
+
+/* AUTH FORMS */
+/* Full-width input fields */
+.auth__form {
+  margin-top: 2rem;
+}
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0 1.5rem 0;
+  display: inline-block;
+  border: none;
+  background: var(--c-white);
+  text-transform: uppercase;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+  background-color: var(--c-white);
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: var(--c-black);
+  color: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.registerbtn:hover {
+  opacity: 1;
 }
 
 /* CHECKBOX INPUTS */
@@ -124,10 +151,9 @@ button {
 }
 
 .text-area {
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: none;
   box-sizing: border-box;
-  font-weight: 600;
   margin: 0;
   min-height: 20px;
   overflow: hidden;
@@ -137,8 +163,10 @@ button {
   font-size: 1rem;
   line-height: 1.2;
   border: none;
+  text-transform: uppercase;
 }
 
 .text-area:focus-visible {
   outline: hsla(160, 100%, 37%, 1) auto 1px;
+  outline: none;
 }

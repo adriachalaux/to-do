@@ -1,10 +1,17 @@
 <script setup></script>
 
 <template>
-  <main>
-    <h1>Auth</h1>
+  <section class="auth-wrapper">
     <RouterView />
-  </main>
+  </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+</style>

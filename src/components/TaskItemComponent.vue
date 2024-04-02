@@ -84,7 +84,7 @@ const handleClickOutside = (event) => {
           @keydown="handleKeydown"
         ></textarea>
       </div>
-      <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p>
+      <!-- <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p> -->
       <p>{{ props.task.id }}</p>
       <button @click="_removeTask">Delete</button>
     </div>
@@ -103,9 +103,7 @@ const handleClickOutside = (event) => {
   position: relative;
 }
 .task-title p {
-  font-weight: bold;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 1rem;
   line-height: 20px;
   margin: 0;
   background-color: transparent;
@@ -114,8 +112,6 @@ const handleClickOutside = (event) => {
   white-space: normal;
   cursor: pointer;
   z-index: 0;
-  font-size: 16px;
-  font-weight: 600;
   padding-left: 13px;
 }
 .text-area {
@@ -126,16 +122,16 @@ const handleClickOutside = (event) => {
   left: 0;
   opacity: 0;
   z-index: -1;
+  text-transform: uppercase;
 }
 
 .task-title.edit p {
-  /* display: none; */
   cursor: pointer;
 }
 
 .task-title.edit .text-area {
   opacity: 1;
   z-index: 0;
-  background-color: #fff;
+  background-color: var(--c-white);
 }
 </style>

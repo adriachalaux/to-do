@@ -19,6 +19,32 @@
   }
 }
 
+::selection {
+  color: var(--c-white);
+  background-color: var(--c-black);
+}
+
+/* TYPEFACES */
+@font-face {
+  font-family: 'Therma';
+  src:
+    url('fonts/ASTherma-MediumCondensed.woff2') format('woff2'),
+    url('fonts/ASTherma-MediumCondensed.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue';
+  src:
+    url('fonts/PPNeueMontrealMono-Medium.woff2') format('woff2'),
+    url('fonts/PPNeueMontrealMono-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text);
@@ -27,21 +53,43 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: 'Neue', sans-serif;
+  text-transform: uppercase;
   font-size: 1rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Therma';
+  text-transform: uppercase;
+}
+
+.h-xxl {
+  font-family: 'Therma';
+  text-transform: uppercase;
+  font-size: 12rem;
+  line-height: 0.6;
+  padding-bottom: 2.5rem;
+  letter-spacing: -0.065em;
+}
+
+.h-xl {
+  font-family: 'Therma';
+  text-transform: uppercase;
+  font-size: 6rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.p-m {
+  font-size: 1rem;
+  font-family: 'Neue', sans-serif;
+  text-transform: uppercase;
 }
