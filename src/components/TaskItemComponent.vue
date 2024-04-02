@@ -86,7 +86,6 @@ const handleClickOutside = (event) => {
       </div>
       <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p>
       <p>{{ props.task.id }}</p>
-      <button @click="_completeTask">Complete</button>
       <button @click="_removeTask">Delete</button>
     </div>
   </li>
@@ -95,6 +94,7 @@ const handleClickOutside = (event) => {
 <style scoped>
 .task-content {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
 }

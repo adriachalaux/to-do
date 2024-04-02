@@ -24,7 +24,9 @@ export const useTasksStore = defineStore({
     },
     // Tareas completadas
     completedTasks(state) {
-      return state.tasks.filter((task) => task.is_complete).sort((a, b) => a.id - b.id)
+      return state.tasks
+        .filter((task) => task.is_complete)
+        .sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at))
     },
     // Número de tareas completadas
     completedTasksCount() {
@@ -32,7 +34,7 @@ export const useTasksStore = defineStore({
     },
     // Tareas pendientes
     pendingTasks(state) {
-      return state.tasks.filter((task) => !task.is_complete).sort((a, b) => a.id - b.id)
+      return state.tasks.filter((task) => !task.is_complete).sort((a, b) => b.id - a.id)
     },
     // Número de tareas pendientes
     pendingTasksCount() {
@@ -58,10 +60,14 @@ export const useTasksStore = defineStore({
     },
     async markTaskComplete(taskId) {
       try {
-        await updateTask(taskId, { is_complete: true })
+        const now = new Date().toISOString()
+        await updateTask(taskId, { is_complete: true, completed_at: now })
         // Actualizar el estado local de la tarea a completada
         const task = this.tasks.find((task) => task.id === taskId)
-        if (task) task.is_complete = true
+        if (task) {
+          task.is_complete = true
+          task.completed_at = now
+        }
       } catch (error) {
         console.error('Error al actualizar tarea:', error.message)
       }

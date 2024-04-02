@@ -36,6 +36,12 @@ ul {
   padding-inline-start: 0;
 }
 
+button {
+  padding: 0.2rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
@@ -75,7 +81,7 @@ ul {
 /* Create a custom checkbox */
 .checkmark {
   position: absolute;
-  top: 0;
+  top: -6px;
   left: 0;
   height: 25px;
   width: 25px;
@@ -131,4 +137,8 @@ ul {
   font-size: 1rem;
   line-height: 1.2;
   border: none;
+}
+
+.text-area:focus-visible {
+  outline: hsla(160, 100%, 37%, 1) auto 1px;
 }
