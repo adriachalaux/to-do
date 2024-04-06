@@ -8,10 +8,15 @@
 
 <style scoped>
 .auth-wrapper {
-  display: flex;
-  align-items: center;
+  padding-top: 15vh;
   max-width: 80rem;
   margin: 0 auto;
   min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .auth-wrapper {
+    padding-top: 10vh;
+  }
 }
 </style>

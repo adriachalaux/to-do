@@ -79,13 +79,32 @@ const _signUp = async (e) => {
 <style scoped>
 .auth {
   display: flex;
-  align-items: center;
   width: 100%;
 }
 .auth__content,
 .auth__image {
   flex: 0 1 50%;
   padding: 1rem;
+}
+
+.auth__image {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.auth__image img {
+  max-width: 35rem;
+  height: 100%;
+}
+
+.auth__content p {
+  text-align: right;
+}
+
+button {
+  height: 4rem;
+  padding: 0 2rem;
 }
 
 @media (max-width: 1024px) {

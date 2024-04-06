@@ -1,8 +1,6 @@
 <script setup>
-import { onMounted } from 'vue'
-// import { useUserStore } from '@/stores/userStore'
+import { onMounted, watchEffect } from 'vue'
 import { useTasksStore } from '@/stores/tasksStore'
-// import { storeToRefs } from 'pinia'
 // Components
 import NewTaskComponent from '@/components/NewTaskComponent.vue'
 import TaskItemComponent from '@/components/TaskItemComponent.vue'
@@ -10,27 +8,62 @@ import TaskItemCompletedComponent from '@/components/TaskItemCompletedComponent.
 import NoCompletedItemsComponent from '@/components/NoCompletedItemsComponent.vue'
 import NoTaskItemsComponent from '@/components/NoTaskItemsComponent.vue'
 
-// const userStore = useUserStore()
-// const { user } = storeToRefs(userStore)
-
 const tasksStore = useTasksStore()
 onMounted(() => {
   tasksStore.fetchTasks()
 })
+
+watchEffect(() => {
+  const count = tasksStore.pendingTasksCount
+  const maxCount = 10
+
+  // Si hay tareas pendientes, calcula el valor de --color-count. De lo contrario, usa un valor predeterminado
+  if (count > 0) {
+    const colorCount = calculateColorCount(count, maxCount)
+    document.documentElement.style.setProperty('--color-count', colorCount.toString())
+    document.documentElement.style.setProperty(
+      '--color-background-task',
+      `hsl(var(--color-count), 100%, 68%)`
+    )
+  } else {
+    // No hay tareas pendientes, establece valores predeterminados
+    document.documentElement.style.setProperty('--color-background-task', 'var(--c-grey)')
+  }
+
+  // Actualizar el color de fondo del body según si hay tareas pendientes o no
+  const backgroundColor = count > 0 ? 'var(--color-background-task)' : 'var(--color-background)'
+  document.body.style.backgroundColor = backgroundColor
+})
+
+function calculateColorCount(count, maxCount) {
+  // Asegurar de que count no sea mayor que maxCount
+  const normalizedCount = Math.min(count, maxCount)
+
+  // Calcular el valor de --color-count. 184 es el valor del azul inicial.
+  const colorCount = 184 - (normalizedCount / maxCount) * 184
+  return colorCount
+}
 </script>
 
 <template>
   <div class="dashboard">
     <aside>
-      <h2 class="p-m">Dashboard</h2>
-      <h3 class="h-xl">{{ tasksStore.totalTasksCount }} tareas</h3>
-      <h4 class="p-m">{{ tasksStore.pendingTasksCount }} pendientes</h4>
-      <h4 class="p-m">{{ tasksStore.completedTasksCount }} completas</h4>
+      <div class="aside__content">
+        <div class="aside__content--top">
+          <h3 class="h-xl">{{ tasksStore.totalTasksCount }} tasks</h3>
+          <h4 class="h-l">{{ tasksStore.pendingTasksCount }} pending</h4>
+          <h4 class="h-l">{{ tasksStore.completedTasksCount }} completed</h4>
+        </div>
+        <div class="aside__content--center">
+          <h4 class="h-l">Messages</h4>
+        </div>
+        <div class="aside__content--bottom">
+          <NewTaskComponent class="dashboard__new-task" />
+        </div>
+      </div>
     </aside>
     <main>
       <div class="dashboard__tasks">
-        <h2 class="p-m">Tasks</h2>
-        <NewTaskComponent class="dashboard__new-task" />
         <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
           <h3 class="h-xxl">Pending</h3>
           <ul>
@@ -63,18 +96,12 @@ onMounted(() => {
   padding-top: 5rem;
   padding-bottom: 10rem;
 }
-@media (min-width: 1024px) {
-  .dashboard {
-    display: flex;
-  }
-}
 
 aside {
-  flex: 0 1 18rem;
+  flex: 0 1 25rem;
   padding: 1rem;
-  /* position: sticky;
-  top: 5rem; */
 }
+
 main {
   flex: 1;
   padding: 1rem;
@@ -88,6 +115,8 @@ main {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: 10;
 }
 ol {
   margin-bottom: 2rem;
@@ -96,10 +125,32 @@ ol {
 }
 .tasks__list--pending {
   padding: 2rem 0;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 2.5rem;
+}
+.tasks__list--completed h3 {
+  text-align: right;
 }
 .tasks__list h3 {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  main {
+    margin-left: 25rem;
+  }
+  .dashboard {
+    display: flex;
+    align-items: flex-start;
+  }
+  aside {
+    position: fixed;
+    top: 5rem;
+  }
+  .aside__content {
+    height: calc(100vh - 7.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 </style>

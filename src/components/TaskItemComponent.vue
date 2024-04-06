@@ -79,14 +79,13 @@ const handleClickOutside = (event) => {
           class="text-area"
           maxlength="512"
           spellcheck="false"
-          style="height: 32px"
           v-model="taskTitle"
           @keydown="handleKeydown"
         ></textarea>
       </div>
       <!-- <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p> -->
-      <p>{{ props.task.id }}</p>
-      <button @click="_removeTask">Delete</button>
+      <!-- <p>{{ props.task.id }}</p> -->
+      <button @click="_removeTask">X</button>
     </div>
   </li>
 </template>
@@ -95,15 +94,19 @@ const handleClickOutside = (event) => {
 .task-content {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  height: 2.5rem;
+  gap: 0.25rem;
+  /* margin-bottom: 0.5rem; */
 }
 .task-title {
   flex: 1 1 25rem;
   position: relative;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.8s ease;
 }
 .task-title p {
-  font-size: 1rem;
   line-height: 20px;
   margin: 0;
   background-color: transparent;
@@ -112,17 +115,42 @@ const handleClickOutside = (event) => {
   white-space: normal;
   cursor: pointer;
   z-index: 0;
-  padding-left: 13px;
+  padding-left: 0.75rem;
 }
 .text-area {
   position: absolute;
-  top: -6px;
+  height: 2.25rem;
   right: 0;
   bottom: 0;
   left: 0;
   opacity: 0;
   z-index: -1;
   text-transform: uppercase;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+}
+
+.task-title:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-links-hover);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: all 0.8s ease;
+}
+
+.task-content:hover .task-title {
+  color: var(--c-white);
+  transition: all 0.3s ease;
+}
+
+.task-content:hover .task-title:after {
+  transform: scaleX(1);
+  transition: all 0.3s ease;
 }
 
 .task-title.edit p {
@@ -133,5 +161,23 @@ const handleClickOutside = (event) => {
   opacity: 1;
   z-index: 0;
   background-color: var(--c-white);
+}
+
+.task-content:hover .checkbox-container .checkmark:after {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 1rem;
+  top: 0.5rem;
+  width: 0.4rem;
+  height: 1rem;
+  border: solid var(--c-white);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.checkbox-container:hover .checkmark {
+  background-color: var(--color-links-hover);
 }
 </style>

@@ -20,10 +20,10 @@ function _signOut() {
       <img src="../assets/img/tick-task-logo.svg" alt="" />
     </div>
     <nav class="header__navigation">
-      <RouterLink to="/">Dashboard</RouterLink>
-      <RouterLink v-if="!user" to="/auth">Auth</RouterLink>
+      <!-- <RouterLink to="/">Dashboard</RouterLink>
+      <RouterLink v-if="!user" to="/auth">Auth</RouterLink> -->
       <div v-if="user" class="header__user">
-        <h4 class="p-m">Hola {{ user.email }}</h4>
+        <h4 class="p-m">Hello {{ user.email }}</h4>
         <button @click="_signOut">Logout</button>
       </div>
     </nav>
@@ -48,12 +48,18 @@ function _signOut() {
 .header__navigation {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   justify-content: space-between;
 }
 .header__user {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .header__user h4 {
+    display: none;
+  }
 }
 </style>

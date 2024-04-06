@@ -8,6 +8,10 @@
 /* SEMANTIC VARIABLES */
 :root {
   --color-background: var(--c-grey);
+  --color-count: 184;
+  --color-background-task: hsl(var(--color-count), 100%, 68%);
+  --color-links: rgba(0, 0, 0, 0.5);
+  --color-links-hover: rgba(0, 0, 0, 0.8);
   --color-text: var(--c-black);
 }
 
@@ -15,6 +19,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--c-black);
+    --color-background-task: var(--c-grey);
     --color-text: var(--c-white);
   }
 }
@@ -55,7 +60,7 @@ body {
   line-height: 1.6;
   font-family: 'Neue', sans-serif;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,7 +80,7 @@ h6 {
   font-family: 'Therma';
   text-transform: uppercase;
   font-size: 12rem;
-  line-height: 0.6;
+  line-height: 0.48;
   padding-bottom: 2.5rem;
   letter-spacing: -0.065em;
 }
@@ -88,8 +93,22 @@ h6 {
   letter-spacing: -0.05em;
 }
 
+.h-l {
+  font-family: 'Therma';
+  text-transform: uppercase;
+  font-size: 4rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
 .p-m {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'Neue', sans-serif;
   text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 80%;
+  }
 }

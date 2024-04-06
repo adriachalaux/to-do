@@ -26,8 +26,8 @@ const _incompleteTask = async () => {
         <span>{{ props.task.title }}</span>
       </p>
       <!-- <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p> -->
-      <p>{{ props.task.id }}</p>
-      <button @click="_removeTask">Delete</button>
+      <!-- <p>{{ props.task.id }}</p> -->
+      <button @click="_removeTask">X</button>
     </div>
   </li>
 </template>
@@ -36,12 +36,19 @@ const _incompleteTask = async () => {
 .task-content {
   display: flex;
   align-items: center;
+  height: 2.5rem;
   gap: 1rem;
-  margin-bottom: 0.5rem;
-  color: #737373;
+  color: var(--color-links);
 }
 .task-title {
   flex: 1 1 25rem;
   text-decoration: line-through;
+  margin-right: 0.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+}
+.checkbox-container:hover input:checked ~ .checkmark {
+  background-color: var(--color-links-hover);
 }
 </style>

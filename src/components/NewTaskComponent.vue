@@ -27,8 +27,28 @@ const _addTask = async () => {
       placeholder="Nueva Tarea"
       class="text-area"
     />
-    <button @click="_addTask">Añadir Tarea</button>
+    <button @click="_addTask">+</button>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.text-area {
+  width: 100%;
+  background-color: var(--color-links);
+  color: var(--c-white);
+}
+.text-area::-webkit-input-placeholder {
+  color: var(--color-background-task);
+}
+
+.text-area:active,
+.text-area:focus,
+.text-area:focus-visible {
+  background-color: var(--c-white);
+  color: var(--c-black);
+}
+
+.text-area:focus-visible::-webkit-input-placeholder {
+  color: var(--c-grey);
+}
+</style>
