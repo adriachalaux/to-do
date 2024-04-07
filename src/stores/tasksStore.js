@@ -72,6 +72,7 @@ export const useTasksStore = defineStore({
         if (task) {
           task.is_complete = true
           task.completed_at = now
+          this.tasksAdded = 0
         }
         if (this.lastActionWasComplete) {
           this.tasksCompletedConsecutively += 1
@@ -91,6 +92,7 @@ export const useTasksStore = defineStore({
         if (task) task.is_complete = false
         this.tasksCompletedConsecutively = 0
         this.lastActionWasComplete = false
+        this.tasksAdded = 0
       } catch (error) {
         console.error('Error al actualizar tarea:', error.message)
       }
@@ -100,6 +102,7 @@ export const useTasksStore = defineStore({
         await deleteTask(taskId)
         // Eliminar la tarea del estado local
         this.tasks = this.tasks.filter((task) => task.id !== taskId)
+        this.tasksAdded = 0
       } catch (error) {
         console.error('Error al borrar tarea:', error.message)
       }
@@ -110,6 +113,7 @@ export const useTasksStore = defineStore({
         // Actualizar el estado local de la tarea a completada
         const task = this.tasks.find((task) => task.id === taskId)
         if (task) task.title = newTitle
+        this.tasksAdded = 0
       } catch (error) {
         console.error('Error al actualizar tarea:', error.message)
       }

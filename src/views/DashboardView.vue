@@ -56,8 +56,10 @@ function calculateColorCount(count, maxCount) {
 </script>
 
 <template>
-  <LoaderComponent v-if="isLoading" />
-  <div class="dashboard" v-if="!isLoading">
+  <transition name="fade" v-if="isLoading">
+    <LoaderComponent />
+  </transition>
+  <div class="dashboard" v-else>
     <aside>
       <div class="aside__content">
         <div class="aside__content--top">
@@ -78,13 +80,13 @@ function calculateColorCount(count, maxCount) {
         <!-- Lista de Tareas Pendientes -->
         <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
           <h3 class="h-xxl">Pending</h3>
-          <ul>
+          <TransitionGroup name="list" tag="ul">
             <TaskItemComponent
               v-for="task in tasksStore.pendingTasks"
               :key="task.id"
               :task="task"
             />
-          </ul>
+          </TransitionGroup>
         </div>
 
         <!-- Mostrar NoTaskItemsComponent si NO hay tareas pendientes -->
@@ -94,13 +96,13 @@ function calculateColorCount(count, maxCount) {
         <!-- Esta sección siempre se muestra si hay tareas completadas, sin importar si NoTaskItemsComponent se muestra -->
         <div class="tasks__list tasks__list--completed" v-if="tasksStore.completedTasks.length">
           <h3 class="h-xxl">Completed</h3>
-          <ul>
+          <TransitionGroup name="list" tag="ul">
             <TaskItemCompletedComponent
               v-for="task in tasksStore.completedTasks"
               :key="task.id"
               :task="task"
             />
-          </ul>
+          </TransitionGroup>
         </div>
 
         <!-- No hay tareas completadas y hay tareas pendientes -->
@@ -179,5 +181,20 @@ ol {
     flex-direction: column;
     justify-content: space-between;
   }
+}
+
+/* LIST ANIMATIONS */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.25s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-3rem);
+}
+ul {
+  overflow: hidden;
 }
 </style>
