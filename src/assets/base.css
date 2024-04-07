@@ -83,6 +83,7 @@ h6 {
   line-height: 0.48;
   padding-bottom: 2.5rem;
   letter-spacing: -0.065em;
+  transform: translateX(-0.5rem);
 }
 
 .h-xl {

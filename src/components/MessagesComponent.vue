@@ -5,7 +5,7 @@ import { useTasksStore } from '@/stores/tasksStore'
 const tasksStore = useTasksStore()
 
 const message = computed(() => {
-  if (tasksStore.tasksAdded === 1) return "You've added your first task!"
+  if (tasksStore.tasksAdded === 1) return "You've added a task!"
   if (tasksStore.tasksAdded === 5) return "You're on a roll, five tasks added!"
   if (tasksStore.tasksCompleted === 1) return "You've completed your first task"
   if (tasksStore.tasksCompletedConsecutively === 3) return '3 tasks down in a row!'
@@ -13,6 +13,7 @@ const message = computed(() => {
     return 'Incredible, 5 tasks completed back-to-back!'
   if (tasksStore.pendingTasksCount === 5) return 'You have 5 tasks on your list waiting for you!'
   if (tasksStore.pendingTasksCount === 10) return 'You have 10 tasks pending! Time to get moving!'
+  if (tasksStore.totalTasksCount === 0) return 'Start adding your first task!'
   return '' // Mensaje predeterminado
 })
 
@@ -24,6 +25,7 @@ const imagePath = computed(() => {
   if (tasksStore.tasksCompletedConsecutively === 5) return 'src/assets/img/ico-completed-5.svg'
   if (tasksStore.pendingTasksCount === 5) return 'src/assets/img/ico-pending-5.svg'
   if (tasksStore.pendingTasksCount === 10) return 'src/assets/img/ico-pending-10.svg'
+  if (tasksStore.totalTasksCount === 0) return 'src/assets/img/ico-start-adding.svg'
   return '' // Imagen predeterminada
 })
 </script>

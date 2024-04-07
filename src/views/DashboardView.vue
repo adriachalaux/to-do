@@ -65,8 +65,9 @@ function calculateColorCount(count, maxCount) {
     </aside>
     <main>
       <div class="dashboard__tasks">
+        <!-- Lista de Tareas Pendientes -->
         <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
-          <h3 class="h-xxl pending-title">Pending</h3>
+          <h3 class="h-xxl">Pending</h3>
           <ul>
             <TaskItemComponent
               v-for="task in tasksStore.pendingTasks"
@@ -75,7 +76,12 @@ function calculateColorCount(count, maxCount) {
             />
           </ul>
         </div>
-        <NoTaskItemsComponent v-else />
+
+        <!-- Mostrar NoTaskItemsComponent si NO hay tareas pendientes -->
+        <NoTaskItemsComponent v-else-if="!tasksStore.pendingTasks.length" />
+
+        <!-- Lista de Tareas Completadas -->
+        <!-- Esta sección siempre se muestra si hay tareas completadas, sin importar si NoTaskItemsComponent se muestra -->
         <div class="tasks__list tasks__list--completed" v-if="tasksStore.completedTasks.length">
           <h3 class="h-xxl">Completed</h3>
           <ul>
@@ -86,7 +92,11 @@ function calculateColorCount(count, maxCount) {
             />
           </ul>
         </div>
-        <NoCompletedItemsComponent v-else />
+
+        <!-- No hay tareas completadas y hay tareas pendientes -->
+        <NoCompletedItemsComponent
+          v-if="!tasksStore.completedTasks.length && tasksStore.pendingTasks.length"
+        />
       </div>
     </main>
   </div>
@@ -138,10 +148,6 @@ ol {
 
 .tasks__list h3 {
   margin-bottom: 2rem;
-}
-
-.pending-title {
-  transform: translateX(-0.5rem);
 }
 
 @media (min-width: 1024px) {
