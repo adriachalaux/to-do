@@ -17,7 +17,7 @@ function _signOut() {
 <template>
   <header class="header">
     <div class="header__logo">
-      <img src="../assets/img/tick-task-logo.svg" alt="" />
+      <img src="../assets/img/tt-logo.svg" alt="" />
     </div>
     <nav class="header__navigation">
       <!-- <RouterLink to="/">Dashboard</RouterLink>
@@ -42,7 +42,7 @@ function _signOut() {
   left: 0;
 }
 .header__logo {
-  max-width: 8rem;
+  max-width: 3rem;
   flex: 0 1 8rem;
 }
 .header__navigation {

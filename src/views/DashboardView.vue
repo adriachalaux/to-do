@@ -7,6 +7,7 @@ import TaskItemComponent from '@/components/TaskItemComponent.vue'
 import TaskItemCompletedComponent from '@/components/TaskItemCompletedComponent.vue'
 import NoCompletedItemsComponent from '@/components/NoCompletedItemsComponent.vue'
 import NoTaskItemsComponent from '@/components/NoTaskItemsComponent.vue'
+import MessagesComponent from '@/components/MessagesComponent.vue'
 
 const tasksStore = useTasksStore()
 onMounted(() => {
@@ -55,7 +56,7 @@ function calculateColorCount(count, maxCount) {
           <h4 class="h-l">{{ tasksStore.completedTasksCount }} completed</h4>
         </div>
         <div class="aside__content--center">
-          <h4 class="h-l">Messages</h4>
+          <MessagesComponent />
         </div>
         <div class="aside__content--bottom">
           <NewTaskComponent class="dashboard__new-task" />
@@ -65,7 +66,7 @@ function calculateColorCount(count, maxCount) {
     <main>
       <div class="dashboard__tasks">
         <div class="tasks__list tasks__list--pending" v-if="tasksStore.pendingTasks.length">
-          <h3 class="h-xxl">Pending</h3>
+          <h3 class="h-xxl pending-title">Pending</h3>
           <ul>
             <TaskItemComponent
               v-for="task in tasksStore.pendingTasks"
@@ -98,7 +99,6 @@ function calculateColorCount(count, maxCount) {
 }
 
 aside {
-  flex: 0 1 25rem;
   padding: 1rem;
 }
 
@@ -106,10 +106,12 @@ main {
   flex: 1;
   padding: 1rem;
 }
+
 .dashboard__tasks {
-  max-width: 60rem;
+  max-width: 55rem;
   margin: 0 auto;
 }
+
 .dashboard__new-task {
   margin-top: 1.75rem;
   display: flex;
@@ -118,20 +120,28 @@ main {
   position: relative;
   z-index: 10;
 }
+
 ol {
   margin-bottom: 2rem;
   margin-left: 0;
   padding-inline-start: 1.5rem;
 }
+
 .tasks__list--pending {
   padding: 2rem 0;
   margin-bottom: 2.5rem;
 }
+
 .tasks__list--completed h3 {
   text-align: right;
 }
+
 .tasks__list h3 {
   margin-bottom: 2rem;
+}
+
+.pending-title {
+  transform: translateX(-0.5rem);
 }
 
 @media (min-width: 1024px) {
@@ -145,6 +155,7 @@ ol {
   aside {
     position: fixed;
     top: 5rem;
+    width: 25rem;
   }
   .aside__content {
     height: calc(100vh - 7.5rem);

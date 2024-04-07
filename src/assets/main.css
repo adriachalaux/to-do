@@ -36,6 +36,7 @@ button {
 
 button:hover {
   background-color: var(--color-links-hover);
+  color: var(--c-white);
 }
 
 @media (hover: hover) {
@@ -54,7 +55,10 @@ button:hover {
 /* AUTH FORMS */
 /* Full-width input fields */
 .auth__form {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+}
+.auth__content-subtitle {
+  opacity: 0.6;
 }
 input[type='text'],
 input[type='password'] {
@@ -85,6 +89,7 @@ input[type='password']:focus {
   opacity: 0.9;
   border-radius: 0;
   text-transform: uppercase;
+  height: 3.75rem;
 }
 
 .registerbtn:hover {
@@ -122,7 +127,8 @@ input[type='password']:focus {
   left: 0;
   height: 2.25rem;
   width: 2.25rem;
-  background-color: var(--c-white);
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: var(--color-links);
 }
 
 /* On mouse-over, add a grey background color */
@@ -131,7 +137,7 @@ input[type='password']:focus {
 }
 
 .task-content:hover input ~ .checkmark {
-  background-color: var(--color-links);
+  background-color: var(--color-links-hover);
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -157,7 +163,7 @@ input[type='password']:focus {
   top: 0.5rem;
   width: 0.4rem;
   height: 1rem;
-  border: solid var(--c-white);
+  border: solid var(--color-background-task);
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+document.body.style.backgroundColor = 'var(--color-background)'
+</script>
 
 <template>
   <section class="auth-wrapper">

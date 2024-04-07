@@ -10,7 +10,10 @@ export const useTasksStore = defineStore({
   id: 'tasks',
   // State
   state: () => ({
-    tasks: []
+    tasks: [],
+    tasksAdded: 0,
+    tasksCompletedConsecutively: 0,
+    lastActionWasComplete: false
   }),
   // Getters
   getters: {
@@ -54,6 +57,8 @@ export const useTasksStore = defineStore({
       try {
         const newTask = await addTask(title, userStore.user.id)
         this.tasks.push(newTask)
+        this.tasksAdded += 1
+        this.lastActionWasComplete = false
       } catch (error) {
         console.error('Error al añadir tarea:', error.message)
       }
@@ -68,6 +73,12 @@ export const useTasksStore = defineStore({
           task.is_complete = true
           task.completed_at = now
         }
+        if (this.lastActionWasComplete) {
+          this.tasksCompletedConsecutively += 1
+        } else {
+          this.tasksCompletedConsecutively = 1 // Primera tarea completada consecutivamente
+          this.lastActionWasComplete = true
+        }
       } catch (error) {
         console.error('Error al actualizar tarea:', error.message)
       }
@@ -78,6 +89,8 @@ export const useTasksStore = defineStore({
         // Actualizar el estado local de la tarea a completada
         const task = this.tasks.find((task) => task.id === taskId)
         if (task) task.is_complete = false
+        this.tasksCompletedConsecutively = 0
+        this.lastActionWasComplete = false
       } catch (error) {
         console.error('Error al actualizar tarea:', error.message)
       }

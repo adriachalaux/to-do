@@ -25,7 +25,7 @@ const _signIn = async (e) => {
   <section class="auth">
     <div class="auth__content">
       <h2 class="h-xxl">Login</h2>
-      <p>Please fill in this form to enter.</p>
+      <p class="auth__content-subtitle">Please fill in this form to enter</p>
 
       <form @submit.prevent="_signIn" class="auth__form">
         <div class="container">
@@ -86,11 +86,6 @@ const _signIn = async (e) => {
 
 .auth__content p {
   text-align: right;
-}
-
-button {
-  height: 4rem;
-  padding: 0 2rem;
 }
 
 @media (max-width: 1024px) {

@@ -31,7 +31,7 @@ const _signUp = async (e) => {
   <section class="auth">
     <div class="auth__content">
       <h2 class="h-xxl">Register</h2>
-      <p>Please fill in this form to create an account.</p>
+      <p class="auth__content-subtitle">Please fill in this form to create an account</p>
       <form @submit.prevent="_signUp" class="auth__form">
         <div class="container">
           <label for="email"><b>Email</b></label>
@@ -100,11 +100,6 @@ const _signUp = async (e) => {
 
 .auth__content p {
   text-align: right;
-}
-
-button {
-  height: 4rem;
-  padding: 0 2rem;
 }
 
 @media (max-width: 1024px) {
