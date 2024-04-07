@@ -85,12 +85,24 @@ const handleClickOutside = (event) => {
       </div>
       <!-- <p class="task-status">Completed: {{ props.task.is_complete ? 'Yes' : 'No' }}</p> -->
       <!-- <p>{{ props.task.id }}</p> -->
-      <button @click="_removeTask">X</button>
+      <button @click="_removeTask">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.47 14.47">
+          <g>
+            <polygon
+              class="ico-remove"
+              points="11.58 9.41 9.41 7.23 11.58 5.06 14.47 2.18 12.29 0 9.41 2.88 7.23 5.06 5.06 2.88 2.18 0 0 2.18 2.88 5.06 5.06 7.23 2.88 9.41 0 12.29 2.18 14.47 5.06 11.58 7.23 9.41 9.41 11.58 12.29 14.47 14.47 12.29 11.58 9.41"
+            />
+          </g>
+        </svg>
+      </button>
     </div>
   </li>
 </template>
 
 <style scoped>
+button {
+  font-weight: 900;
+}
 .task-content {
   display: flex;
   align-items: center;
@@ -179,5 +191,11 @@ const handleClickOutside = (event) => {
 }
 .checkbox-container:hover .checkmark {
   background-color: var(--color-links-hover);
+}
+.ico-remove {
+  fill: var(--color-background-task);
+}
+button:hover .ico-remove {
+  fill: var(--c-white);
 }
 </style>

@@ -5,7 +5,6 @@ import { useTasksStore } from '@/stores/tasksStore'
 const tasksStore = useTasksStore()
 
 const message = computed(() => {
-  if (tasksStore.tasksAdded === 1) return "You've added a task!"
   if (tasksStore.tasksAdded === 5) return "You're on a roll, five tasks added!"
   if (tasksStore.tasksCompleted === 1) return "You've completed your first task"
   if (tasksStore.tasksCompletedConsecutively === 3) return '3 tasks down in a row!'
@@ -14,11 +13,11 @@ const message = computed(() => {
   if (tasksStore.pendingTasksCount === 5) return 'You have 5 tasks on your list waiting for you!'
   if (tasksStore.pendingTasksCount === 10) return 'You have 10 tasks pending! Time to get moving!'
   if (tasksStore.totalTasksCount === 0) return 'Start adding your first task!'
+  if (tasksStore.tasksAdded === 1) return "You've added a task!"
   return '' // Mensaje predeterminado
 })
 
 const imagePath = computed(() => {
-  if (tasksStore.tasksAdded === 1) return 'src/assets/img/ico-added-first.svg'
   if (tasksStore.tasksAdded === 5) return 'src/assets/img/ico-added-5.svg'
   if (tasksStore.tasksCompleted === 1) return 'src/assets/img/ico-completed-first.svg'
   if (tasksStore.tasksCompletedConsecutively === 3) return 'src/assets/img/ico-completed-3.svg'
@@ -26,6 +25,7 @@ const imagePath = computed(() => {
   if (tasksStore.pendingTasksCount === 5) return 'src/assets/img/ico-pending-5.svg'
   if (tasksStore.pendingTasksCount === 10) return 'src/assets/img/ico-pending-10.svg'
   if (tasksStore.totalTasksCount === 0) return 'src/assets/img/ico-start-adding.svg'
+  if (tasksStore.tasksAdded === 1) return 'src/assets/img/ico-added-first.svg'
   return '' // Imagen predeterminada
 })
 </script>

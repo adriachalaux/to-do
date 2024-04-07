@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, watchEffect } from 'vue'
+import { onMounted, watchEffect, ref } from 'vue'
 import { useTasksStore } from '@/stores/tasksStore'
 // Components
 import NewTaskComponent from '@/components/NewTaskComponent.vue'
@@ -8,10 +8,19 @@ import TaskItemCompletedComponent from '@/components/TaskItemCompletedComponent.
 import NoCompletedItemsComponent from '@/components/NoCompletedItemsComponent.vue'
 import NoTaskItemsComponent from '@/components/NoTaskItemsComponent.vue'
 import MessagesComponent from '@/components/MessagesComponent.vue'
+import LoaderComponent from '@/components/LoaderComponent.vue'
+
+const isLoading = ref(true)
 
 const tasksStore = useTasksStore()
-onMounted(() => {
-  tasksStore.fetchTasks()
+onMounted(async () => {
+  // await tasksStore.fetchTasks()
+  // isLoading.value = false
+  await Promise.all([
+    tasksStore.fetchTasks(),
+    new Promise((resolve) => setTimeout(resolve, 1000)) // Añadir 1 segundo falso
+  ])
+  isLoading.value = false
 })
 
 watchEffect(() => {
@@ -47,7 +56,8 @@ function calculateColorCount(count, maxCount) {
 </script>
 
 <template>
-  <div class="dashboard">
+  <LoaderComponent v-if="isLoading" />
+  <div class="dashboard" v-if="!isLoading">
     <aside>
       <div class="aside__content">
         <div class="aside__content--top">

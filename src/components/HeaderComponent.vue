@@ -23,7 +23,7 @@ function _signOut() {
       <!-- <RouterLink to="/">Dashboard</RouterLink>
       <RouterLink v-if="!user" to="/auth">Auth</RouterLink> -->
       <div v-if="user" class="header__user">
-        <h4 class="p-m">Hello {{ user.email }}</h4>
+        <h4 class="p-m">{{ user.email }}</h4>
         <button @click="_signOut">Logout</button>
       </div>
     </nav>

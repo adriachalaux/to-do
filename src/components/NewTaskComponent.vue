@@ -27,7 +27,16 @@ const _addTask = async () => {
       placeholder="Nueva Tarea"
       class="text-area"
     />
-    <button @click="_addTask">+</button>
+    <button @click="_addTask">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.38 15.38">
+        <g>
+          <polygon
+            class="add-ico"
+            points="12.31 6.15 9.23 6.15 9.23 3.08 9.23 0 6.15 0 6.15 3.08 6.15 6.15 3.08 6.15 0 6.15 0 9.23 3.08 9.23 6.15 9.23 6.15 12.31 6.15 15.38 9.23 15.38 9.23 12.31 9.23 9.23 12.31 9.23 15.38 9.23 15.38 6.15 12.31 6.15"
+          />
+        </g>
+      </svg>
+    </button>
   </div>
 </template>
 
@@ -50,5 +59,12 @@ const _addTask = async () => {
 
 .text-area:focus-visible::-webkit-input-placeholder {
   color: var(--c-grey);
+}
+
+.add-ico {
+  fill: var(--color-background-task);
+}
+button:hover .add-ico {
+  fill: var(--c-white);
 }
 </style>
