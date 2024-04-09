@@ -79,6 +79,7 @@ const _signUp = async (e) => {
 <style scoped>
 .auth {
   display: flex;
+  gap: 4rem;
   width: 100%;
 }
 .auth__content,
