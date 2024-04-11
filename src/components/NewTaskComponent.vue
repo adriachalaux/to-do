@@ -21,12 +21,7 @@ const _addTask = async () => {
 
 <template>
   <div>
-    <input
-      v-model="taskTitle"
-      @keyup.enter="_addTask"
-      placeholder="Nueva Tarea"
-      class="text-area"
-    />
+    <input v-model="taskTitle" @keyup.enter="_addTask" placeholder="New task" class="text-area" />
     <button @click="_addTask">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.38 15.38">
         <g>
