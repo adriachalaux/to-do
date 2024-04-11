@@ -5,7 +5,9 @@ export const useUserStore = defineStore({
   id: 'user', // Identificador único para el store
   // State
   state: () => ({
-    user: undefined // Inicializa el estado del usuario como indefinido
+    user: undefined, // Inicializa el estado del usuario como indefinido
+    message: '', // Mensaje para mostrar al usuario
+    messageType: 'info' // 'info', 'error', o 'success'
   }),
   // Getters
 
@@ -25,30 +27,44 @@ export const useUserStore = defineStore({
     async signUp(email, password) {
       try {
         const result = await createNewUser(email, password)
-        if (result.user) {
-          this.user = result.user
+        if (result.error) {
+          this.message = result.error.message
+          this.messageType = 'error'
         } else {
+          this.user = result.user
+          this.message = 'Registration successful!'
+          this.messageType = 'success'
           // Iniciar sesión automáticamente al usuario después del registro
           await this.signIn(email, password)
         }
       } catch (error) {
-        console.error(error)
+        // Maneja errores no capturados de la API
+        this.message = error.message || 'An unexpected error occurred during sign up.'
+        this.messageType = 'error'
       }
     },
     async signIn(email, password) {
       try {
-        this.user = await logIn(email, password)
+        const user = await logIn(email, password)
+        this.user = user
+        this.message = 'Logged in successfully.'
+        this.messageType = 'success'
       } catch (error) {
-        console.error(error)
+        this.message = error.message
+        this.messageType = 'error'
       }
     },
     async signOut() {
       try {
-        await signOut() // Utiliza la función signOut de userApi.js
-        this.user = null // Limpia el estado del usuario en el store
+        await signOut()
+        this.user = null
       } catch (error) {
         console.error('Error al cerrar sesión:', error.message)
       }
+    },
+    clearMessages() {
+      this.message = ''
+      this.messageType = 'info'
     }
   },
 

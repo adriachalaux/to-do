@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 
@@ -19,6 +19,11 @@ const _signIn = async (e) => {
     console.error(error)
   }
 }
+
+// Borrar mensajes al volver a cargar la vista
+onMounted(() => {
+  userStore.clearMessages()
+})
 </script>
 
 <template>
@@ -49,6 +54,16 @@ const _signIn = async (e) => {
           />
 
           <button type="submit" class="registerbtn">Login</button>
+        </div>
+
+        <div
+          v-if="userStore.message"
+          :class="{
+            'message-success': userStore.messageType === 'success',
+            'message-error': userStore.messageType === 'error'
+          }"
+        >
+          {{ userStore.message }}
         </div>
 
         <div class="container signin">
@@ -87,6 +102,14 @@ const _signIn = async (e) => {
 
 .auth__content p {
   text-align: right;
+}
+
+.message-success {
+  color: green;
+}
+
+.message-error {
+  color: red;
 }
 
 @media (max-width: 1024px) {
