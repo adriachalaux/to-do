@@ -138,7 +138,7 @@ button {
   opacity: 0;
   z-index: -1;
   text-transform: uppercase;
-  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  padding: 0.4rem 1rem 0.6rem 0.75rem;
 }
 
 .task-title:after {
@@ -197,5 +197,10 @@ button {
 }
 button:hover .ico-remove {
   fill: var(--c-white);
+}
+@media (max-width: 1024px) {
+  .text-area {
+    padding: 0.375rem 0.8rem 0.375rem 0.8rem;
+  }
 }
 </style>

@@ -112,4 +112,7 @@ h6 {
   html {
     font-size: 85%;
   }
+  .h-xxl {
+    font-size: 10rem;
+  }
 }
