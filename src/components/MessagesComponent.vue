@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { useTasksStore } from '@/stores/tasksStore'
 
 const tasksStore = useTasksStore()
-const imagesDirectory = 'src/assets/img/'
 
 const message = computed(() => {
   if (tasksStore.tasksAdded === 5) return "You're on a roll, five tasks added!"
@@ -19,15 +18,18 @@ const message = computed(() => {
 })
 
 const imagePath = computed(() => {
-  if (tasksStore.tasksAdded === 5) return `${imagesDirectory}ico-added-5.svg`
-  if (tasksStore.tasksCompleted === 1) return `${imagesDirectory}ico-completed-first.svg`
-  if (tasksStore.tasksCompletedConsecutively === 3) return `${imagesDirectory}ico-completed-3.svg`
-  if (tasksStore.tasksCompletedConsecutively === 5) return `${imagesDirectory}ico-completed-5.svg`
-  if (tasksStore.pendingTasksCount === 5) return `${imagesDirectory}ico-pending-5.svg`
-  if (tasksStore.pendingTasksCount === 10) return `${imagesDirectory}ico-pending-10.svg`
-  if (tasksStore.totalTasksCount === 0) return `${imagesDirectory}ico-start-adding.svg`
-  if (tasksStore.tasksAdded === 1) return `${imagesDirectory}ico-added-first.svg`
-  return '' // Imagen predeterminada
+  const imageName = (() => {
+    if (tasksStore.tasksAdded === 5) return 'ico-added-5.svg'
+    if (tasksStore.tasksCompleted === 1) return 'ico-completed-first.svg'
+    if (tasksStore.tasksCompletedConsecutively === 3) return 'ico-completed-3.svg'
+    if (tasksStore.tasksCompletedConsecutively === 5) return 'ico-completed-5.svg'
+    if (tasksStore.pendingTasksCount === 5) return 'ico-pending-5.svg'
+    if (tasksStore.pendingTasksCount === 10) return 'ico-pending-10.svg'
+    if (tasksStore.totalTasksCount === 0) return 'ico-start-adding.svg'
+    if (tasksStore.tasksAdded === 1) return 'ico-added-first.svg'
+    return null
+  })()
+  return imageName ? new URL(`../assets/img/${imageName}`, import.meta.url).href : ''
 })
 </script>
 
