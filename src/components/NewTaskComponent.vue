@@ -62,4 +62,13 @@ const _addTask = async () => {
 button:hover .add-ico {
   fill: var(--c-white);
 }
+@media (max-width: 1024px) {
+  button:hover {
+    background-color: var(--color-links);
+    color: var(--color-background-task);
+  }
+  button:hover .add-ico[data-v-f9b56140] {
+    fill: var(--color-background-task);
+  }
+}
 </style>
