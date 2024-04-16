@@ -202,5 +202,14 @@ button:hover .ico-remove {
   .text-area {
     padding: 0.375rem 0.8rem 0.375rem 0.8rem;
   }
+  .task-content:hover .task-title {
+    color: var(--c-black);
+    transition: none;
+  }
+
+  .task-content:hover .task-title:after {
+    transform: scaleX(0);
+    transition: none;
+  }
 }
 </style>

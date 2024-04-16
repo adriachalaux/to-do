@@ -116,7 +116,7 @@ function calculateColorCount(count, maxCount) {
 
 <style scoped>
 .dashboard {
-  padding-top: 5rem;
+  padding-top: 0;
   padding-bottom: 10rem;
 }
 
@@ -169,6 +169,7 @@ ol {
   .dashboard {
     display: flex;
     align-items: flex-start;
+    padding-top: 5rem;
   }
   aside {
     position: fixed;

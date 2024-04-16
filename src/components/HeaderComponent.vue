@@ -58,6 +58,9 @@ function _signOut() {
 }
 
 @media (max-width: 1024px) {
+  .header {
+    position: relative;
+  }
   .header__user h4 {
     display: none;
   }

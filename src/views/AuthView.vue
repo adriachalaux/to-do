@@ -18,7 +18,7 @@ document.body.style.backgroundColor = 'var(--color-background)'
 
 @media (max-width: 1024px) {
   .auth-wrapper {
-    padding-top: 10vh;
+    padding-top: 2rem;
   }
 }
 </style>
