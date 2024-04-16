@@ -42,6 +42,7 @@ onMounted(() => {
             id="email"
             autocomplete="on"
             required
+            autocapitalize="none"
           />
 
           <label for="psw"><b>Password</b></label>
@@ -51,6 +52,7 @@ onMounted(() => {
             v-model="password"
             id="psw"
             required
+            autocapitalize="none"
           />
 
           <button type="submit" class="registerbtn">Login</button>
