@@ -206,10 +206,30 @@ button:hover .ico-remove {
     color: var(--c-black);
     transition: none;
   }
-
   .task-content:hover .task-title:after {
     transform: scaleX(0);
     transition: none;
+  }
+  .task-content:hover .checkbox-container .checkmark:after {
+    display: none;
+  }
+  .checkbox-container:hover .checkmark,
+  .task-content:hover input ~ .checkmark {
+    background-color: var(--color-links);
+  }
+  .checkbox-container:hover .checkmark:after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 1rem;
+    top: 0.5rem;
+    width: 0.4rem;
+    height: 1rem;
+    border: solid var(--c-white);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 }
 </style>
